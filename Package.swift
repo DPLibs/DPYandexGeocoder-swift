@@ -14,9 +14,15 @@ let package = Package(
             targets: ["DPYandexGeocoder"]
         )
     ],
+    dependencies: [
+        .package(url: "https://github.com/DPLibs/DPLogger-swift.git", from: "0.0.3")
+    ],
     targets: [
         .target(
             name: "DPYandexGeocoder",
+            dependencies: [
+                .product(name: "DPLogger", package: "DPLogger-swift")
+            ],
             path: "Sources"
         )
     ]
