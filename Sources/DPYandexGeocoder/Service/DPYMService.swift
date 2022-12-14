@@ -1,70 +1,67 @@
 //
-//  DPYandexGeocoder.swift
+//  DPYMService.swift
 //  
 //
-//  Created by Дмитрий Поляков on 07.10.2022.
+//  Created by Дмитрий Поляков on 14.12.2022.
 //
 
 import Foundation
 import DPLogger
 
-open class DPYandexGeocoder: DPLoggable {
+open class DPYMService<Request: DPYMRequestFactory, Mapper: DPYMMapperFactory>: DPLoggable {
     
     // MARK: - Init
-    public init() {
+    public init(mapper: Mapper, isDPLoggingEnabled: Bool = false) {
         self.session = .shared
+        self.mapper = mapper
+        self.isDPLoggingEnabled = isDPLoggingEnabled
     }
     
     // MARK: - Props
-    public typealias Completion = (Result<DPYandexGeocoderSuccess, Error>) -> Void
+    public typealias Completion = (Result<Mapper.Model, Error>) -> Void
     open var session: URLSession
     open private(set) var task: URLSessionDataTask?
+    open var mapper: Mapper
     
-    public var isDPLoggingEnabled: Bool = true
+    public var isDPLoggingEnabled: Bool
     
     // MARK: - Methods
-    open func load(_ requestGenerator: DPYandexGeocoderRequestGenerator, completion: @escaping Completion) {
+    open func load(_ request: Request, completion: @escaping Completion) {
         do {
-            let urlRequest = try requestGenerator.generateURLRequest()
+            let urlRequest = try request.generateURLRequest()
             
             self.task?.cancel()
             self.task = self.session.dataTask(with: urlRequest, completionHandler: { [weak self] data, urlResponse, error in
+                guard let self = self else { return }
+                self.log(urlRequest: urlRequest, urlReponse: urlResponse, data: data, error: error)
+                
                 do {
-                    let logger = DPLoggerDataTaskCompletionDebugString(title: .init(className: "DPYandexGeocoder", functionName: #function), urlRequest: urlRequest, urlReponse: urlResponse, data: data, error: error)
-                    
-                    self?.log(debugString: logger)
-                    
                     if let data = data, let httpURLResponse = urlResponse as? HTTPURLResponse {
                         let statusCode = httpURLResponse.statusCode
                         let decoder = JSONDecoder()
                         
                         if statusCode == 200 || statusCode == 201 {
-                            let response = try decoder.decode(DPYandexGeocoderSuccessResponse.self, from: data)
-                            
-                            let model = DPYandexGeocoderSuccessMapper().mapResponseToModel(
-                                response,
-                                sco: requestGenerator.sco ?? .default
-                            )
-                            
+                            let response = try decoder.decode(Mapper.Response.self, from: data)
+                            let model = try self.mapper.mapResponseToModel(response)
                             completion(.success(model))
                         } else {
-                            if let errorResponse = try? decoder.decode(DPYandexGeocoderErrorResponse.self, from: data) {
-                                let error = DPYandexGeocoderError(
+                            if let errorResponse = try? decoder.decode(DPYMErrorResponse.self, from: data) {
+                                let error = DPYMError(
                                     identifer: errorResponse.error,
                                     message: errorResponse.message
                                 )
                                 
                                 throw error
                             } else {
-                                throw DPYandexGeocoderError.unknown
+                                throw DPYMError.unknown
                             }
                         }
                     } else {
-                        throw error ?? DPYandexGeocoderError.unknown
+                        throw error ?? DPYMError.unknown
                     }
                 } catch {
                     guard (error as NSError).code != NSURLErrorCancelled else { return }
-                    self?.log(error: error)
+                    self.log(error: error)
                     completion(.failure(error))
                 }
             })
