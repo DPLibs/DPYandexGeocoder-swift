@@ -7,4 +7,4 @@
 
 import Foundation
 
-open class DPYandexSearchService: DPYandexService<DPYandexSearchRequest, DPYandexSearchSuccessMapper> {}
+open class DPYMSearchService: DPYMService<DPYMSearchRequest, DPYMSearchSuccessMapper> {}

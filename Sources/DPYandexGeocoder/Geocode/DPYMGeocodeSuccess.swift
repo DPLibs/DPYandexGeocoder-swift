@@ -1,5 +1,5 @@
 //
-//  DPYandexGeocodeSuccess.swift
+//  DPYMGeocodeSuccess.swift
 //  
 //
 //  Created by Дмитрий Поляков on 07.10.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct DPYandexGeocodeSuccess {
+public struct DPYMGeocodeSuccess {
     
     // MARK: - Init
     public init(geoObjects: [GeoObject]) {
@@ -19,7 +19,7 @@ public struct DPYandexGeocodeSuccess {
 }
 
 // MARK: - GeoObject
-public extension DPYandexGeocodeSuccess {
+public extension DPYMGeocodeSuccess {
     
     struct GeoObject {
         
@@ -29,7 +29,7 @@ public extension DPYandexGeocodeSuccess {
             description: String,
             name: String,
             boundedBy: Envelope?,
-            point: DPYandexCoordinates?
+            point: DPYMCoordinates?
         ) {
             self.metaData = metaData
             self.description = description
@@ -43,39 +43,39 @@ public extension DPYandexGeocodeSuccess {
         public let description: String
         public let name: String
         public let boundedBy: Envelope?
-        public let point: DPYandexCoordinates?
+        public let point: DPYMCoordinates?
     }
     
 }
 
 // MARK: - Envelope
-public extension DPYandexGeocodeSuccess {
+public extension DPYMGeocodeSuccess {
     
     struct Envelope {
         
         // MARK: - Init
-        public init(lowerCorner: DPYandexCoordinates, upperCorner: DPYandexCoordinates) {
+        public init(lowerCorner: DPYMCoordinates, upperCorner: DPYMCoordinates) {
             self.lowerCorner = lowerCorner
             self.upperCorner = upperCorner
         }
         
         // MARK: - Props
-        public let lowerCorner: DPYandexCoordinates
-        public let upperCorner: DPYandexCoordinates
+        public let lowerCorner: DPYMCoordinates
+        public let upperCorner: DPYMCoordinates
     }
     
 }
 
 // MARK: - GeocoderMetaData
-public extension DPYandexGeocodeSuccess {
+public extension DPYMGeocodeSuccess {
     
     struct GeocoderMetaData {
         
         // MARK: - Init
         public init(
-            kind: DPYandexKind,
+            kind: DPYMKind,
             text: String,
-            precision: DPYandexPrecision,
+            precision: DPYMPrecision,
             address: Address
         ) {
             self.kind = kind
@@ -85,16 +85,16 @@ public extension DPYandexGeocodeSuccess {
         }
         
         // MARK: - Props
-        public let kind: DPYandexKind
+        public let kind: DPYMKind
         public let text: String
-        public let precision: DPYandexPrecision
+        public let precision: DPYMPrecision
         public let address: Address
     }
     
 }
 
 // MARK: - Address
-public extension DPYandexGeocodeSuccess {
+public extension DPYMGeocodeSuccess {
     
     struct Address {
         
@@ -121,18 +121,18 @@ public extension DPYandexGeocodeSuccess {
 }
 
 // MARK: - Component
-public extension DPYandexGeocodeSuccess {
+public extension DPYMGeocodeSuccess {
     
     struct Component {
         
         // MARK: - Init
-        public init(kind: DPYandexKind, name: String) {
+        public init(kind: DPYMKind, name: String) {
             self.kind = kind
             self.name = name
         }
         
         // MARK: - Props
-        public let kind: DPYandexKind
+        public let kind: DPYMKind
         public let name: String
     }
     

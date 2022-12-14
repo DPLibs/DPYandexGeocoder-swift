@@ -1,5 +1,5 @@
 //
-//  DPYandexSearchText.swift
+//  DPYMSearchText.swift
 //  
 //
 //  Created by Дмитрий Поляков on 14.12.2022.
@@ -14,7 +14,7 @@ import Foundation
 /// text=Санкт-Петербург, ул. Блохина, 15
 /// text=+7 495 739-70-70
 /// text=ООО Яндекс
-public struct DPYandexSearchText {
+public struct DPYMSearchText {
     
     // MARK: - Init
     public init(longitude: Double, latitude: Double) {

@@ -1,5 +1,5 @@
 //
-//  DPYandexPrecision.swift
+//  DPYMPrecision.swift
 //  
 //
 //  Created by Дмитрий Поляков on 14.12.2022.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Точность соответствия между номером найденного дома и номером дома из запроса.
-public enum DPYandexPrecision: String {
+public enum DPYMPrecision: String {
     
     /// Найден дом с указанным номером дома.
     case exact = "exact"

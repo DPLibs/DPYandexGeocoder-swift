@@ -1,5 +1,5 @@
 //
-//  DPYandexCoordinates.swift
+//  DPYMCoordinates.swift
 //  
 //
 //  Created by Дмитрий Поляков on 14.12.2022.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Географические координаты.
-public struct DPYandexCoordinates {
+public struct DPYMCoordinates {
     
     // MARK: - Init
     public init(longitude: Double, latitude: Double) {

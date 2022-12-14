@@ -1,5 +1,5 @@
 //
-//  DPYandexError.swift
+//  DPYMError.swift
 //  
 //
 //  Created by Дмитрий Поляков on 07.10.2022.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-public struct DPYandexError {
+public struct DPYMError {
     public let identifer: String
     public let message: String
 }
 
 // MARK: - Equatable
-extension DPYandexError: Equatable {
+extension DPYMError: Equatable {
     
     public static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.identifer == rhs.identifer
@@ -22,7 +22,7 @@ extension DPYandexError: Equatable {
 }
 
 // MARK: - LocalizedError
-extension DPYandexError: LocalizedError {
+extension DPYMError: LocalizedError {
     
     public var errorDescription: String? {
         self.message
@@ -35,19 +35,19 @@ extension DPYandexError: LocalizedError {
 }
 
 // MARK: - DPYandexGeocoderError
-public extension DPYandexError {
+public extension DPYMError {
     
-    static let unknown = DPYandexError(
+    static let unknown = DPYMError(
         identifer: "unknown",
         message: "Unknown error"
     )
     
-    static let failedGenerateURLRequest = DPYandexError(
+    static let failedGenerateURLRequest = DPYMError(
         identifer: "badGenerateURLRequest",
         message: "Failed to generate URLRequest"
     )
     
-    static let failedParse = DPYandexError(
+    static let failedParse = DPYMError(
         identifer: "failedParse",
         message: "Failed parse"
     )

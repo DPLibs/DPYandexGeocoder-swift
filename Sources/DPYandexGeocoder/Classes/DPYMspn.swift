@@ -1,5 +1,5 @@
 //
-//  DPYandexSPN.swift
+//  DPYMspn.swift
 //  
 //
 //  Created by Дмитрий Поляков on 14.12.2022.
@@ -11,7 +11,7 @@ import Foundation
 /// Задается двумя числами:
 /// - первое обозначает разницу между максимальной и минимальной долготой области;
 /// - второе обозначает разницу между максимальной и минимальной широтой области.
-public struct DPYandexSPN {
+public struct DPYMspn {
     
     // MARK: - Init
     public init(longitudeLength: Double, latitudeLength: Double) {

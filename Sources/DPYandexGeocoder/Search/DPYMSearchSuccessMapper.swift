@@ -1,5 +1,5 @@
 //
-//  DPYandexSearchSuccessMapper.swift
+//  DPYMSearchSuccessMapper.swift
 //  
 //
 //  Created by Дмитрий Поляков on 14.12.2022.
@@ -7,17 +7,17 @@
 
 import Foundation
 
-public struct DPYandexSearchSuccessMapper: DPYandexMapperFactory {
+public struct DPYMSearchSuccessMapper: DPYMMapperFactory {
     
     // MARK: - DPYandexMapperFactory
-    public func mapResponseToModel(_ response: DPYandexSearchSuccessResponse) throws -> DPYandexSearchSuccess {
-        let objects: [DPYandexSearchSuccess.Object] = (response.features ?? []).compactMap({ featureResponse in
+    public func mapResponseToModel(_ response: DPYMSearchSuccessResponse) throws -> DPYMSearchSuccess {
+        let objects: [DPYMSearchSuccess.Object] = (response.features ?? []).compactMap({ featureResponse in
             guard
                 let coordinates = self.mapToCoordinates(array: featureResponse?.geometry?.coordinates),
                 let propertiesResponse = featureResponse?.properties
             else { return nil }
             
-            return DPYandexSearchSuccess.Object(
+            return DPYMSearchSuccess.Object(
                 coordinates: coordinates,
                 name: propertiesResponse.name ?? "",
                 descriptionText: propertiesResponse.descriptionText ?? "",
@@ -26,11 +26,11 @@ public struct DPYandexSearchSuccessMapper: DPYandexMapperFactory {
             )
         })
         
-        return DPYandexSearchSuccess(objects: objects)
+        return DPYMSearchSuccess(objects: objects)
     }
     
     // MARK: - Methods
-    func mapToCoordinates(array: [Double?]?) -> DPYandexCoordinates? {
+    func mapToCoordinates(array: [Double?]?) -> DPYMCoordinates? {
         guard
             let array = array,
             array.count >= 2,
@@ -38,34 +38,34 @@ public struct DPYandexSearchSuccessMapper: DPYandexMapperFactory {
             let second = array[1]
         else { return nil }
         
-        return DPYandexCoordinates(longitude: first, latitude: second)
+        return DPYMCoordinates(longitude: first, latitude: second)
     }
     
-    func mapToCompany(response: DPYandexSearchSuccessResponse.CompanyMetaDataResponse?) -> DPYandexSearchSuccess.Company? {
+    func mapToCompany(response: DPYMSearchSuccessResponse.CompanyMetaDataResponse?) -> DPYMSearchSuccess.Company? {
         guard
             let id = response?.id,
             let name = response?.name
         else { return nil }
         
-        let phones: [DPYandexSearchSuccess.CompanyPhone] = (response?.phones ?? []).compactMap { phoneResponse in
+        let phones: [DPYMSearchSuccess.CompanyPhone] = (response?.phones ?? []).compactMap { phoneResponse in
             guard let formatted = phoneResponse?.formatted else { return nil }
             
-            return DPYandexSearchSuccess.CompanyPhone(
+            return DPYMSearchSuccess.CompanyPhone(
                 type: phoneResponse?.type ?? "",
                 formatted: formatted
             )
         }
         
-        let categories: [DPYandexSearchSuccess.CompanyCategory] = (response?.categories ?? []).compactMap { categoryResponse in
+        let categories: [DPYMSearchSuccess.CompanyCategory] = (response?.categories ?? []).compactMap { categoryResponse in
             guard let name = categoryResponse?.name else { return nil }
             
-            return DPYandexSearchSuccess.CompanyCategory(
+            return DPYMSearchSuccess.CompanyCategory(
                 type: categoryResponse?.type ?? "",
                 name: name
             )
         }
         
-        return DPYandexSearchSuccess.Company(
+        return DPYMSearchSuccess.Company(
             id: id,
             name: name,
             address: response?.address ?? "",
@@ -75,11 +75,11 @@ public struct DPYandexSearchSuccessMapper: DPYandexMapperFactory {
         )
     }
     
-    func mapToGeocoder(response: DPYandexSearchSuccessResponse.GeocoderMetaDataResponse?) -> DPYandexSearchSuccess.Geocoder? {
-        DPYandexSearchSuccess.Geocoder(
-            kind: DPYandexKind(rawValue: response?.precision ?? "") ?? .other,
+    func mapToGeocoder(response: DPYMSearchSuccessResponse.GeocoderMetaDataResponse?) -> DPYMSearchSuccess.Geocoder? {
+        DPYMSearchSuccess.Geocoder(
+            kind: DPYMKind(rawValue: response?.precision ?? "") ?? .other,
             text: response?.text ?? "",
-            precision: DPYandexPrecision(rawValue: response?.precision ?? "") ?? .other
+            precision: DPYMPrecision(rawValue: response?.precision ?? "") ?? .other
         )
     }
     

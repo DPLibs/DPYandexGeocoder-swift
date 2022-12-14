@@ -1,5 +1,5 @@
 //
-//  DPYandexSearchSuccessResponse.swift
+//  DPYMSearchSuccessResponse.swift
 //  
 //
 //  Created by Дмитрий Поляков on 14.12.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct DPYandexSearchSuccessResponse: Decodable {
+public struct DPYMSearchSuccessResponse: Decodable {
     
     // MARK: - Props
     public let type: String?
@@ -23,7 +23,7 @@ public struct DPYandexSearchSuccessResponse: Decodable {
 }
 
 // MARK: - PropertiesResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     
     struct PropertiesResponse: Decodable {
         
@@ -39,7 +39,7 @@ public extension DPYandexSearchSuccessResponse {
 }
 
 // MARK: - PropertiesResponseMetaDataResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     
     struct PropertiesResponseMetaDataResponse: Decodable {
         
@@ -57,7 +57,7 @@ public extension DPYandexSearchSuccessResponse {
 }
 
 // MARK: - PropertiesResponseMetaDataSearchResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     
     struct PropertiesResponseMetaDataSearchResponse: Decodable {
         
@@ -75,7 +75,7 @@ public extension DPYandexSearchSuccessResponse {
 }
 
 // MARK: - PropertiesResponseMetaDataSearchRequestResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     
     struct PropertiesResponseMetaDataSearchRequestResponse: Decodable {
         
@@ -97,17 +97,17 @@ public extension DPYandexSearchSuccessResponse {
 }
 
 // MARK: - BoundedByResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     typealias BoundedByResponse = [PositionResponse?]
 }
 
 // MARK: - PositionResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     typealias PositionResponse = [Double?]
 }
 
 // MARK: - FeatureResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     
     struct FeatureResponse: Decodable {
         
@@ -127,7 +127,7 @@ public extension DPYandexSearchSuccessResponse {
 }
 
 // MARK: - FeatureGeometryResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     
     struct FeatureGeometryResponse: Decodable {
         
@@ -145,7 +145,7 @@ public extension DPYandexSearchSuccessResponse {
 }
 
 // MARK: - FeaturePropertiesResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     
     struct FeaturePropertiesResponse: Decodable {
         
@@ -169,7 +169,7 @@ public extension DPYandexSearchSuccessResponse {
 }
 
 // MARK: - CompanyMetaDataResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     
     struct CompanyMetaDataResponse: Decodable {
         
@@ -197,7 +197,7 @@ public extension DPYandexSearchSuccessResponse {
 }
 
 // MARK: - PhoneResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     
     struct PhoneResponse: Decodable {
         
@@ -215,7 +215,7 @@ public extension DPYandexSearchSuccessResponse {
 }
 
 // MARK: - CategoryResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     
     struct CategoryResponse: Decodable {
         
@@ -233,7 +233,7 @@ public extension DPYandexSearchSuccessResponse {
 }
 
 // MARK: - HoursResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     
     struct HoursResponse: Decodable {
         
@@ -251,7 +251,7 @@ public extension DPYandexSearchSuccessResponse {
 }
 
 // MARK: - HoursAvailabilityResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     
     struct HoursAvailabilityResponse: Decodable {
         
@@ -285,7 +285,7 @@ public extension DPYandexSearchSuccessResponse {
 }
 
 // MARK: - HoursAvailabilityIntervalResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     
     struct HoursAvailabilityIntervalResponse: Decodable {
         
@@ -304,7 +304,7 @@ public extension DPYandexSearchSuccessResponse {
 
 
 // MARK: - GeocoderMetaDataResponse
-public extension DPYandexSearchSuccessResponse {
+public extension DPYMSearchSuccessResponse {
     
     struct GeocoderMetaDataResponse: Decodable {
         

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct DPYandexSearchSuccess {
+public struct DPYMSearchSuccess {
     
     // MARK: - Init
     public init(objects: [Object]) {
@@ -19,13 +19,13 @@ public struct DPYandexSearchSuccess {
 }
 
 // MARK: - Object
-public extension DPYandexSearchSuccess {
+public extension DPYMSearchSuccess {
     
     struct Object {
         
         // MARK: - Init
         public init(
-            coordinates: DPYandexCoordinates,
+            coordinates: DPYMCoordinates,
             name: String,
             descriptionText: String,
             company: Company?,
@@ -39,7 +39,7 @@ public extension DPYandexSearchSuccess {
         }
         
         // MARK: - Props
-        public let coordinates: DPYandexCoordinates
+        public let coordinates: DPYMCoordinates
         public let name: String
         public let descriptionText: String
         public let company: Company?
@@ -49,7 +49,7 @@ public extension DPYandexSearchSuccess {
 }
 
 // MARK: - Company
-public extension DPYandexSearchSuccess {
+public extension DPYMSearchSuccess {
     
     struct Company {
         
@@ -82,7 +82,7 @@ public extension DPYandexSearchSuccess {
 }
 
 // MARK: - CompanyPhone
-public extension DPYandexSearchSuccess {
+public extension DPYMSearchSuccess {
     
     struct CompanyPhone {
         
@@ -103,7 +103,7 @@ public extension DPYandexSearchSuccess {
 }
 
 // MARK: - CompanyCategory
-public extension DPYandexSearchSuccess {
+public extension DPYMSearchSuccess {
     
     struct CompanyCategory {
         
@@ -124,15 +124,15 @@ public extension DPYandexSearchSuccess {
 }
 
 // MARK: - Geocoder
-public extension DPYandexSearchSuccess {
+public extension DPYMSearchSuccess {
     
     struct Geocoder {
         
         // MARK: - Init
         public init(
-            kind: DPYandexKind,
+            kind: DPYMKind,
             text: String,
-            precision: DPYandexPrecision
+            precision: DPYMPrecision
         ) {
             self.kind = kind
             self.text = text
@@ -140,9 +140,9 @@ public extension DPYandexSearchSuccess {
         }
         
         // MARK: - Props
-        public let kind: DPYandexKind
+        public let kind: DPYMKind
         public let text: String
-        public let precision: DPYandexPrecision
+        public let precision: DPYMPrecision
     }
     
 }

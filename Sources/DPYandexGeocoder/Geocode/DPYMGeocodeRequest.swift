@@ -1,5 +1,5 @@
 //
-//  DPYandexGeocodeRequest.swift
+//  DPYMGeocodeRequest.swift
 //  
 //
 //  Created by Дмитрий Поляков on 07.10.2022.
@@ -7,21 +7,21 @@
 
 import Foundation
 
-public struct DPYandexGeocodeRequest {
+public struct DPYMGeocodeRequest {
     
     // MARK: - Init
     public init(
         apikey: String,
-        geocode: DPYandexGeocode,
-        urlString: String = DPYandexConstants.geocodeURLString,
+        geocode: DPYMGeocode,
+        urlString: String = DPYMConstants.geocodeURLString,
         kind: Kind? = nil,
-        rspn: DPYandexRSPN? = nil,
-        ll: DPYandexCoordinates? = nil,
-        spn: DPYandexSPN? = nil,
+        rspn: DPYMrspn? = nil,
+        ll: DPYMCoordinates? = nil,
+        spn: DPYMspn? = nil,
         bbox: String? = nil,
         results: Int? = nil,
         skip: Int? = nil,
-        lang: DPYandexLang? = nil,
+        lang: DPYMLang? = nil,
         callback: String? = nil
     ) {
         self.urlString = urlString
@@ -48,22 +48,22 @@ public struct DPYandexGeocodeRequest {
     /// Если указан адрес, то он преобразуется в координаты объекта. Этот процесс называется прямым геокодированием.
     /// Если указаны координаты, они преобразуются в адрес объекта. Этот процесс называется обратным геокодированием.
     /// Доступны несколько форматов записи координат.
-    public var geocode: DPYandexGeocode
+    public var geocode: DPYMGeocode
     
     /// Только если в параметре geocode указаны координаты. Вид необходимого топонима. Если параметр не задан, API выберет тип топонима автоматически.
     public var kind: Kind?
     
     /// Флаг, задающий ограничение поиска указанной областью. Область задается параметрами ll и spn либо bbox. Значение по умолчению: 0.
-    public var rspn: DPYandexRSPN?
+    public var rspn: DPYMrspn?
     
     /// Долгота и широта центра области поиска. Протяженность области поиска задается параметром spn.
-    public var ll: DPYandexCoordinates?
+    public var ll: DPYMCoordinates?
     
     /// Протяженность области поиска. Центр области задается параметром ll.
     /// Задается двумя числами:
     /// - первое обозначает разницу между максимальной и минимальной долготой области;
     /// - второе обозначает разницу между максимальной и минимальной широтой области.
-    public var spn: DPYandexSPN?
+    public var spn: DPYMspn?
     
     /// Альтернативный способ задания области поиска.
     ///  Границы задаются в виде географических координат (в последовательности «долгота, широта») левого нижнего и правого верхнего углов области.
@@ -87,7 +87,7 @@ public struct DPYandexGeocodeRequest {
     /// - language — двузначный код языка. Указывается в формате ISO 639-1. Задает язык, на котором будут отображаться названия географических объектов.
     /// - region — двузначный код страны. Указывается в формате ISO 3166-1. Определяет региональные особенности.
     /// Значение по умолчанию: ru_RU.
-    public var lang: DPYandexLang?
+    public var lang: DPYMLang?
     
     /// Имя JavaScript-функции, которой передается ответ геокодера (в соответствии с соглашениями JSONP).
     /// Параметр учитывается только если ответ возвращается в формате JSON.
@@ -96,7 +96,7 @@ public struct DPYandexGeocodeRequest {
 }
 
 // MARK: - Kind
-public extension DPYandexGeocodeRequest {
+public extension DPYMGeocodeRequest {
     
     /// Только если в параметре geocode указаны координаты. Вид необходимого топонима. Если параметр не задан, API выберет тип топонима автоматически
     enum Kind: String {
@@ -120,11 +120,11 @@ public extension DPYandexGeocodeRequest {
 }
 
 // MARK: - DPYandexRequestGeneratorFactory
-extension DPYandexGeocodeRequest: DPYandexRequestFactory {
+extension DPYMGeocodeRequest: DPYMRequestFactory {
     
     public func generateURLRequest() throws -> URLRequest {
         guard var urlComponents = URLComponents(string: self.urlString) else {
-            throw DPYandexError.failedGenerateURLRequest
+            throw DPYMError.failedGenerateURLRequest
         }
         
         var urlQueryItems: [URLQueryItem] = [
@@ -173,7 +173,7 @@ extension DPYandexGeocodeRequest: DPYandexRequestFactory {
         urlComponents.queryItems = urlQueryItems
         
         guard let url = urlComponents.url else {
-            throw DPYandexError.failedGenerateURLRequest
+            throw DPYMError.failedGenerateURLRequest
         }
         
         var urlRequest = URLRequest(url: url)

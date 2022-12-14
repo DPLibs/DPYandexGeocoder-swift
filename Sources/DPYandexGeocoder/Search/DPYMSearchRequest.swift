@@ -1,5 +1,5 @@
 //
-//  DPYandexSearchRequest.swift
+//  DPYMSearchRequest.swift
 //  
 //
 //  Created by Дмитрий Поляков on 14.12.2022.
@@ -7,19 +7,19 @@
 
 import Foundation
 
-public struct DPYandexSearchRequest {
+public struct DPYMSearchRequest {
     
     // MARK: - Init
     public init(
         apikey: String,
-        text: DPYandexSearchText,
-        urlString: String = DPYandexConstants.searchURLString,
-        lang: DPYandexLang = .ru_RU,
-        type: DPYandexSearchType? = nil,
-        ll: DPYandexCoordinates? = nil,
-        spn: DPYandexSPN? = nil,
+        text: DPYMSearchText,
+        urlString: String = DPYMConstants.searchURLString,
+        lang: DPYMLang = .ru_RU,
+        type: DPYMSearchType? = nil,
+        ll: DPYMCoordinates? = nil,
+        spn: DPYMspn? = nil,
         bbox: String? = nil,
-        rspn: DPYandexRSPN? = nil,
+        rspn: DPYMrspn? = nil,
         results: Int? = nil,
         skip: Int? = nil,
         callback: String? = nil
@@ -51,28 +51,28 @@ public struct DPYandexSearchRequest {
     /// text=Санкт-Петербург, ул. Блохина, 15
     /// text=+7 495 739-70-70
     /// text=ООО Яндекс
-    public var text: DPYandexSearchText
+    public var text: DPYMSearchText
     
     /// Язык ответа и региональные особенности карты.
     /// Формат записи: lang=language_region
     /// - language — двузначный код языка. Указывается в формате ISO 639-1. Задает язык, на котором будут отображаться названия географических объектов.
     /// - region — двузначный код страны. Указывается в формате ISO 3166-1. Определяет региональные особенности.
     /// Значение по умолчанию: ru_RU.
-    public var lang: DPYandexLang
+    public var lang: DPYMLang
     
     /// Типы возвращаемых результатов.
     /// Если не задано— автоматическое определения типа по тексту запроса.
-    public var type: DPYandexSearchType?
+    public var type: DPYMSearchType?
     
     /// Центр области поиска. Определяется с помощью долготы и широты, разделенных запятой. Долгота и широта указываются в градусах, представленных в виде десятичной дроби.
     /// Используется совместно с параметром spn, определяющим размеры области поиска.
     /// Игнорируется при обратном геокодировании.
-    public var ll: DPYandexCoordinates?
+    public var ll: DPYMCoordinates?
     
     /// Размеры области поиска. Определяется с помощью протяженностей по долготе и широте, разделенных запятой. Протяженности указываются в градусах, представленных в виде десятичной дроби.
     /// Используется совместно с параметром ll, определяющим центр области поиска.
     /// Игнорируется при обратном геокодировании.
-    public var spn: DPYandexSPN?
+    public var spn: DPYMspn?
     
     /// Альтернативный способ задания области поиска (см. ll+spn).
     /// Границы области поиска задаются в виде географических координат (в последовательности «долгота, широта») левого нижнего и правого верхнего углов области.
@@ -80,7 +80,7 @@ public struct DPYandexSearchRequest {
     
     /// Флаг, задающий ограничение поиска указанной областью. Область задается параметрами ll и spn либо bbox.
     /// Значение по умолчению: 0.
-    public var rspn: DPYandexRSPN?
+    public var rspn: DPYMrspn?
     
     /// Количество возвращаемых объектов.
     /// По умолчанию — 10.
@@ -98,11 +98,11 @@ public struct DPYandexSearchRequest {
 }
 
 // MARK: - DPYandexRequestFactory
-extension DPYandexSearchRequest: DPYandexRequestFactory {
+extension DPYMSearchRequest: DPYMRequestFactory {
     
     public func generateURLRequest() throws -> URLRequest {
         guard var urlComponents = URLComponents(string: self.urlString) else {
-            throw DPYandexError.failedGenerateURLRequest
+            throw DPYMError.failedGenerateURLRequest
         }
         
         var urlQueryItems: [URLQueryItem] = [
@@ -146,7 +146,7 @@ extension DPYandexSearchRequest: DPYandexRequestFactory {
         urlComponents.queryItems = urlQueryItems
         
         guard let url = urlComponents.url else {
-            throw DPYandexError.failedGenerateURLRequest
+            throw DPYMError.failedGenerateURLRequest
         }
         
         var urlRequest = URLRequest(url: url)

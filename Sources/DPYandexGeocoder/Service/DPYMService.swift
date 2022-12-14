@@ -1,5 +1,5 @@
 //
-//  DPYandexService.swift
+//  DPYMService.swift
 //  
 //
 //  Created by Дмитрий Поляков on 14.12.2022.
@@ -8,7 +8,7 @@
 import Foundation
 import DPLogger
 
-open class DPYandexService<Request: DPYandexRequestFactory, Mapper: DPYandexMapperFactory>: DPLoggable {
+open class DPYMService<Request: DPYMRequestFactory, Mapper: DPYMMapperFactory>: DPLoggable {
     
     // MARK: - Init
     public init(mapper: Mapper) {
@@ -44,19 +44,19 @@ open class DPYandexService<Request: DPYandexRequestFactory, Mapper: DPYandexMapp
                             let model = try self.mapper.mapResponseToModel(response)
                             completion(.success(model))
                         } else {
-                            if let errorResponse = try? decoder.decode(DPYandexErrorResponse.self, from: data) {
-                                let error = DPYandexError(
+                            if let errorResponse = try? decoder.decode(DPYMErrorResponse.self, from: data) {
+                                let error = DPYMError(
                                     identifer: errorResponse.error,
                                     message: errorResponse.message
                                 )
                                 
                                 throw error
                             } else {
-                                throw DPYandexError.unknown
+                                throw DPYMError.unknown
                             }
                         }
                     } else {
-                        throw error ?? DPYandexError.unknown
+                        throw error ?? DPYMError.unknown
                     }
                 } catch {
                     guard (error as NSError).code != NSURLErrorCancelled else { return }

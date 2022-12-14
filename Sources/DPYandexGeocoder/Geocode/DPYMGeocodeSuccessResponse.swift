@@ -1,5 +1,5 @@
 //
-//  DPYandexGeocodeSuccessResponse.swift
+//  DPYMGeocodeSuccessResponse.swift
 //  
 //
 //  Created by Дмитрий Поляков on 07.10.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct DPYandexGeocodeSuccessResponse: Decodable {
+public struct DPYMGeocodeSuccessResponse: Decodable {
     
     // MARK: - Props
     public let response: Response?
@@ -20,7 +20,7 @@ public struct DPYandexGeocodeSuccessResponse: Decodable {
 }
 
 // MARK: - Response
-public extension DPYandexGeocodeSuccessResponse {
+public extension DPYMGeocodeSuccessResponse {
     
     struct Response: Decodable {
         
@@ -36,7 +36,7 @@ public extension DPYandexGeocodeSuccessResponse {
 }
 
 // MARK: - GeoObjectCollectionResponse
-public extension DPYandexGeocodeSuccessResponse {
+public extension DPYMGeocodeSuccessResponse {
     
     struct GeoObjectCollectionResponse: Decodable {
         
@@ -54,7 +54,7 @@ public extension DPYandexGeocodeSuccessResponse {
 }
 
 // MARK: - MetaDataPropertyResponse
-public extension DPYandexGeocodeSuccessResponse {
+public extension DPYMGeocodeSuccessResponse {
     
     struct MetaDataPropertyResponse: Decodable {
         
@@ -70,7 +70,7 @@ public extension DPYandexGeocodeSuccessResponse {
 }
 
 // MARK: - GeocoderResponseMetaDataResponse
-public extension DPYandexGeocodeSuccessResponse {
+public extension DPYMGeocodeSuccessResponse {
     
     struct GeocoderResponseMetaDataResponse: Decodable {
         
@@ -90,7 +90,7 @@ public extension DPYandexGeocodeSuccessResponse {
 }
 
 // MARK: - FeatureMemberResponse
-public extension DPYandexGeocodeSuccessResponse {
+public extension DPYMGeocodeSuccessResponse {
     
     struct FeatureMemberResponse: Decodable {
         
@@ -106,7 +106,7 @@ public extension DPYandexGeocodeSuccessResponse {
 }
 
 // MARK: - GeoObjectResponse
-public extension DPYandexGeocodeSuccessResponse {
+public extension DPYMGeocodeSuccessResponse {
     
     struct GeoObjectResponse: Decodable {
         
@@ -130,7 +130,7 @@ public extension DPYandexGeocodeSuccessResponse {
 }
 
 // MARK: - GeoObjectMetaDataPropertyResponse
-public extension DPYandexGeocodeSuccessResponse {
+public extension DPYMGeocodeSuccessResponse {
     
     struct GeoObjectMetaDataPropertyResponse: Decodable {
         
@@ -146,7 +146,7 @@ public extension DPYandexGeocodeSuccessResponse {
 }
 
 // MARK: - PointResponse
-public extension DPYandexGeocodeSuccessResponse {
+public extension DPYMGeocodeSuccessResponse {
     
     struct PointResponse: Decodable {
         
@@ -162,7 +162,7 @@ public extension DPYandexGeocodeSuccessResponse {
 }
 
 // MARK: - BoundedByResponse
-public extension DPYandexGeocodeSuccessResponse {
+public extension DPYMGeocodeSuccessResponse {
     
     struct BoundedByResponse: Decodable {
         
@@ -178,7 +178,7 @@ public extension DPYandexGeocodeSuccessResponse {
 }
 
 // MARK: - EnvelopeResponse
-public extension DPYandexGeocodeSuccessResponse {
+public extension DPYMGeocodeSuccessResponse {
     
     struct EnvelopeResponse: Decodable {
         
@@ -196,7 +196,7 @@ public extension DPYandexGeocodeSuccessResponse {
 }
 
 // MARK: - GeocoderMetaDataResponse
-public extension DPYandexGeocodeSuccessResponse {
+public extension DPYMGeocodeSuccessResponse {
     
     struct GeocoderMetaDataResponse: Decodable {
         
@@ -218,7 +218,7 @@ public extension DPYandexGeocodeSuccessResponse {
 }
 
 // MARK: - AddressResponse
-public extension DPYandexGeocodeSuccessResponse {
+public extension DPYMGeocodeSuccessResponse {
     
     struct AddressResponse: Decodable {
         
@@ -240,7 +240,7 @@ public extension DPYandexGeocodeSuccessResponse {
 }
 
 // MARK: - ComponentResponse
-public extension DPYandexGeocodeSuccessResponse {
+public extension DPYMGeocodeSuccessResponse {
     
     struct ComponentResponse: Decodable {
         

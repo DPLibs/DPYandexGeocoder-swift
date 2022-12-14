@@ -1,5 +1,5 @@
 //
-//  DPYandexLang.swift
+//  DPYMLang.swift
 //  
 //
 //  Created by Дмитрий Поляков on 14.12.2022.
@@ -12,7 +12,7 @@ import Foundation
 /// - language — двузначный код языка. Указывается в формате ISO 639-1. Задает язык, на котором будут отображаться названия географических объектов.
 /// - region — двузначный код страны. Указывается в формате ISO 3166-1. Определяет региональные особенности.
 /// Значение по умолчанию: ru_RU.
-public enum DPYandexLang: String {
+public enum DPYMLang: String {
     
     /// русский
     case ru_RU = "ru_RU"

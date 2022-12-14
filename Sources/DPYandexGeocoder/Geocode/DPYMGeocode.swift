@@ -1,5 +1,5 @@
 //
-//  DPYandexGeocode.swift
+//  DPYMGeocode.swift
 //  
 //
 //  Created by Дмитрий Поляков on 14.12.2022.
@@ -11,7 +11,7 @@ import Foundation
 /// Если указан адрес, то он преобразуется в координаты объекта. Этот процесс называется прямым геокодированием.
 /// Если указаны координаты, они преобразуются в адрес объекта. Этот процесс называется обратным геокодированием.
 /// Доступны несколько форматов записи координат.
-public struct DPYandexGeocode {
+public struct DPYMGeocode {
     
     // MARK: - Init
     public init(longitude: Double, latitude: Double) {

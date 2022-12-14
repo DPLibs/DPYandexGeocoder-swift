@@ -1,5 +1,5 @@
 //
-//  DPYandexKind.swift
+//  DPYMKind.swift
 //  
 //
 //  Created by Дмитрий Поляков on 14.12.2022.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Вид топонима
-public enum DPYandexKind: String {
+public enum DPYMKind: String {
     
     /// отдельный дом
     case house = "house"

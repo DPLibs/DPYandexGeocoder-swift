@@ -1,5 +1,5 @@
 //
-//  DPYandexGeocodeSuccessMapper.swift
+//  DPYMGeocodeSuccessMapper.swift
 //  
 //
 //  Created by Дмитрий Поляков on 07.10.2022.
@@ -7,19 +7,19 @@
 
 import Foundation
 
-public struct DPYandexGeocodeSuccessMapper: DPYandexMapperFactory {
+public struct DPYMGeocodeSuccessMapper: DPYMMapperFactory {
     
     // MARK: - DPYandexMapperFactory
-    public func mapResponseToModel(_ response: DPYandexGeocodeSuccessResponse) throws -> DPYandexGeocodeSuccess {
+    public func mapResponseToModel(_ response: DPYMGeocodeSuccessResponse) throws -> DPYMGeocodeSuccess {
         let featureMemberResponses = response.response?.geoObjectCollection?.featureMember ?? []
         
-        let geoObjects: [DPYandexGeocodeSuccess.GeoObject] = featureMemberResponses.compactMap { memberResponse in
+        let geoObjects: [DPYMGeocodeSuccess.GeoObject] = featureMemberResponses.compactMap { memberResponse in
             guard let geoObjectReponse = memberResponse?.geoObject else { return nil }
             let metaDataResponse = geoObjectReponse.metaDataProperty?.geocoderMetaData
             let addressResponse = metaDataResponse?.address
             let envelopeResponse = geoObjectReponse.boundedBy?.envelope
             
-            let address = DPYandexGeocodeSuccess.Address(
+            let address = DPYMGeocodeSuccess.Address(
                 countryCode: addressResponse?.countryCode ?? "",
                 postalCode: addressResponse?.postalCode ?? "",
                 formatted: addressResponse?.formatted ?? "",
@@ -29,40 +29,40 @@ public struct DPYandexGeocodeSuccessMapper: DPYandexMapperFactory {
                         let name = componentResponse?.name
                     else { return nil }
                     
-                    let kind = DPYandexKind(rawValue: kindRawValue) ?? .other
+                    let kind = DPYMKind(rawValue: kindRawValue) ?? .other
                     
-                    return DPYandexGeocodeSuccess.Component(
+                    return DPYMGeocodeSuccess.Component(
                         kind: kind,
                         name: name
                     )
                 })
             )
             
-            let precision = DPYandexPrecision(rawValue: metaDataResponse?.precision ?? "") ?? .other
+            let precision = DPYMPrecision(rawValue: metaDataResponse?.precision ?? "") ?? .other
             
-            let boundedBy: DPYandexGeocodeSuccess.Envelope? = {
+            let boundedBy: DPYMGeocodeSuccess.Envelope? = {
                 guard
                     let lowerCorner = self.mapToCoordinates(longlat: envelopeResponse?.lowerCorner),
                     let upperCorner = self.mapToCoordinates(longlat: envelopeResponse?.upperCorner)
                 else { return nil }
                 
-                return DPYandexGeocodeSuccess.Envelope(
+                return DPYMGeocodeSuccess.Envelope(
                     lowerCorner: lowerCorner,
                     upperCorner: upperCorner
                 )
             }()
             
             let point = self.mapToCoordinates(longlat: geoObjectReponse.point?.pos)
-            let kind = DPYandexKind(rawValue: metaDataResponse?.kind ?? "") ?? .other
+            let kind = DPYMKind(rawValue: metaDataResponse?.kind ?? "") ?? .other
              
-            let metaData = DPYandexGeocodeSuccess.GeocoderMetaData(
+            let metaData = DPYMGeocodeSuccess.GeocoderMetaData(
                 kind: kind,
                 text: metaDataResponse?.text ?? "",
                 precision: precision,
                 address: address
             )
             
-            return DPYandexGeocodeSuccess.GeoObject(
+            return DPYMGeocodeSuccess.GeoObject(
                 metaData: metaData,
                 description: geoObjectReponse.description ?? "",
                 name: geoObjectReponse.name ?? "",
@@ -71,11 +71,11 @@ public struct DPYandexGeocodeSuccessMapper: DPYandexMapperFactory {
             )
         }
         
-        return DPYandexGeocodeSuccess(geoObjects: geoObjects)
+        return DPYMGeocodeSuccess(geoObjects: geoObjects)
     }
     
     // MARK: - Methods
-    func mapToCoordinates(longlat stringValue: String?) -> DPYandexCoordinates? {
+    func mapToCoordinates(longlat stringValue: String?) -> DPYMCoordinates? {
         guard let stringValue = stringValue else { return nil }
         let components = stringValue.split(separator: " ")
         
@@ -86,7 +86,7 @@ public struct DPYandexGeocodeSuccessMapper: DPYandexMapperFactory {
             let lastDouble = Double(last)
         else { return nil }
         
-        return DPYandexCoordinates(longitude: firstDouble, latitude: lastDouble)
+        return DPYMCoordinates(longitude: firstDouble, latitude: lastDouble)
     }
     
 }

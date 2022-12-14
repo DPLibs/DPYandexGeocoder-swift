@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol DPYandexRequestFactory {
+public protocol DPYMRequestFactory {
     func generateURLRequest() throws -> URLRequest
 }

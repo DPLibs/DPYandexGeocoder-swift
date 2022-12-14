@@ -1,5 +1,5 @@
 //
-//  DPYandexGeocodeService.swift
+//  DPYMGeocodeService.swift
 //  
 //
 //  Created by Дмитрий Поляков on 07.10.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-open class DPYandexGeocodeService: DPYandexService<DPYandexGeocodeRequest, DPYandexGeocodeSuccessMapper> {}
+open class DPYMGeocodeService: DPYMService<DPYMGeocodeRequest, DPYMGeocodeSuccessMapper> {}
 
 //import DPLogger
 
@@ -46,7 +46,7 @@ open class DPYandexGeocodeService: DPYandexService<DPYandexGeocodeRequest, DPYan
 //                            let model = try DPYandexGeocodeSuccessMapper().mapResponseToModel(response)
 //                            completion(.success(model))
 //                        } else {
-//                            if let errorResponse = try? decoder.decode(DPYandexErrorResponse.self, from: data) {
+//                            if let errorResponse = try? decoder.decode(DPYMErrorResponse.self, from: data) {
 //                                let error = DPYandexError(
 //                                    identifer: errorResponse.error,
 //                                    message: errorResponse.message
