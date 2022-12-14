@@ -11,9 +11,10 @@ import DPLogger
 open class DPYMService<Request: DPYMRequestFactory, Mapper: DPYMMapperFactory>: DPLoggable {
     
     // MARK: - Init
-    public init(mapper: Mapper) {
+    public init(mapper: Mapper, isDPLoggingEnabled: Bool = false) {
         self.session = .shared
         self.mapper = mapper
+        self.isDPLoggingEnabled = isDPLoggingEnabled
     }
     
     // MARK: - Props
@@ -22,7 +23,7 @@ open class DPYMService<Request: DPYMRequestFactory, Mapper: DPYMMapperFactory>: 
     open private(set) var task: URLSessionDataTask?
     open var mapper: Mapper
     
-    public var isDPLoggingEnabled: Bool = true
+    public var isDPLoggingEnabled: Bool
     
     // MARK: - Methods
     open func load(_ request: Request, completion: @escaping Completion) {

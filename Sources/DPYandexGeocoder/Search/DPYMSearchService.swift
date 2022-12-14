@@ -7,4 +7,10 @@
 
 import Foundation
 
-open class DPYMSearchService: DPYMService<DPYMSearchRequest, DPYMSearchSuccessMapper> {}
+open class DPYMSearchService: DPYMService<DPYMSearchRequest, DPYMSearchSuccessMapper> {
+    
+    public init(isDPLoggingEnabled: Bool = false) {
+        super.init(mapper: DPYMSearchSuccessMapper(), isDPLoggingEnabled: isDPLoggingEnabled)
+    }
+    
+}
