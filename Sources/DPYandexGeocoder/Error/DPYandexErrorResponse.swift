@@ -1,5 +1,5 @@
 //
-//  DPYandexGeocoderErrorResponse.swift
+//  DPYandexErrorResponse.swift
 //  
 //
 //  Created by Дмитрий Поляков on 07.10.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct DPYandexGeocoderErrorResponse: Decodable {
+public struct DPYandexErrorResponse: Decodable {
     public let statusCode: Int
     public let error: String
     public let message: String
